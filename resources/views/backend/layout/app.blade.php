@@ -99,11 +99,11 @@
                   function(){
                     
                     $.ajax({
-                        url         :   "{{ url('admin/delete_operation')}}",
+                        url         :   "{{ url('\delete_data')}}",
                         type        :   "get",
                         dataType    :   "json",
                         data        :   "delete_id="+delete_id+"&table_name="+table_name+"&field_name="+field_name,
-                        success     : function(response){
+                        success     : function (response){
                             if(response.status=="success"){
                                 swal.close();
                                 $("#row_"+delete_id).remove();
