@@ -11,14 +11,15 @@
                 <th>#</th>
                 <th>Student Name</th>
                 <th>Problem Name</th>
-                <th>Time</th>
+                <th>Options</th>
             </tr>
         </thead>
         <tbody>
                 <td>#</td>
                 <td> </td>
-                <td><a href="">Edit</a> | <a href="#" onclick="">Delete</a></td>
                 <td> </td>
+                <td><a href="">Edit</a> | <a href="#" onclick="">Delete</a></td>
+               
             </tr> 
         </tbody>
     </table>

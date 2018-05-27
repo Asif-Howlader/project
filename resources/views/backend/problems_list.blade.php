@@ -18,7 +18,7 @@
                 <td>{{ $service->id }}</td>
                 <td>{{ $service->name }} </td>
                 <td width="70%">{{ $service->discription }} </td>
-                <td align="right" ><a href="">Edit</a> | <a href="#" onclick="deleteConfirmation({{$service->id}}, 'problems')">Delete</a></td>
+                <td align="right" ><a href="{{ url('/problem_edit_form/'.$service->id)}}">Edit</a> | <a href="#" onclick="deleteConfirmation({{$service->id}}, 'problems')">Delete</a></td>
 <!--                 {{ url('/delete_data/'.$service->id) }} -->
             </tr> 
             @endforeach

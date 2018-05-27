@@ -9,7 +9,8 @@ Route::get('/', function () {
     });
     
   Route::get("/problems_entry_form","backend\problems@problem_entry");
-  Route::get("/problems_edit_form","backend\problems@problems_edit");
+  Route::get("/problem_edit_form/{id}","backend\problems@problems_edit");
+  Route::post("/problem_update","backend\problems@problem_update");
   Route::get("/problems_list","backend\problems@problems_list");
   //Route::get("/delete_data/{id}","backend\problems@delete");
   Route::get("/delete_data","backend\problems@delete");

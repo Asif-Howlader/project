@@ -68,13 +68,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> <br>
 
         <footer>
             <div class="container">
 
                 <div class="copy text-center">
-                    Copyright 2014 <a href='#'>Website</a>
+                    Copyright 2018  <a href='http://www.bdmidi.com/'> (www.bdmidi.com) </a>
                 </div>
 
             </div>
@@ -105,6 +105,8 @@
                         data        :   "delete_id="+delete_id+"&table_name="+table_name+"&field_name="+field_name,
                         success     : function (response){
                             if(response.status=="success"){
+                            	//window.location.reload(); //// This is not jQuery but simple plain ol' JS
+                            	location.reload();
                                 swal.close();
                                 $("#row_"+delete_id).remove();
                             }
