@@ -10,16 +10,25 @@ class problems extends Controller
 {
     //
     public function problem_insert(Request $request) {
-        $all_value  =   $request->all();
-        $insert_array   =   [
-            'name'             => $all_value['name'],
-            'discription'      => $all_value['discription']
+//         $all_value  =   $request->all();
+//         $insert_array   =   [
+//             'name'             => $all_value['name'],
+//             'discription'      => $all_value['discription']
             
-        ];
-        problem::insert($insert_array);
-        return redirect('/home');
-        
-     }
+//         ];
+//         problem::insert($insert_array);
+            $this->validate($request, [
+                "name"=>"required",
+                "discription"=>"required",
+//                 "_token" =>"required"
+            ],[
+                "name"=>"Sir Name Fild Must be NOT empty",
+                "discription"=>"Sir You Must fill up Discription of Following Problem"
+            ]);
+            problem::insert($request->all());
+                    return redirect('/home');
+                    
+         }
     
     public function problem_entry(){
         return view("backend\problem_entry_form");

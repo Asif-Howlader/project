@@ -17,6 +17,8 @@ class CreateProblemsTable extends Migration
             $table->increments('id');
             $table->text('name');
             $table->text('discription');
+            $table->text('_token');
+            $table->text('Submit');
             $table->timestamps();
         });
     }
