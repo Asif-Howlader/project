@@ -1,12 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Admin;
-use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -28,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'backend/home';
 
     /**
      * Create a new controller instance.
@@ -37,21 +34,6 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
-    
-    protected function guard()
-    {
-        return Auth::guard();
-    }
-    
-//     public function Login(Request $request){
-//         dd($request->all());
-//         $user = Auth::where('email',$request->email)->first();
-//         if ($user->is_admin()){
-//             return redirect()->route('home');
-//         }
-        
-//         return redirect()->route('problems_entry_form');
-//     }
 }

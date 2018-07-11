@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\backend;
 
 use App\User;
+use App\information;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\information;
 
 class RegisterController extends Controller
 {
@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'admin/home';
 
     /**
      * Create a new controller instance.
@@ -38,7 +38,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:admin');
+        return view('/information');
     }
 
     /**
@@ -71,13 +72,13 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
         
-//         return  Information::create([
-//             'Department' => '',
-//             'DOFB'  => '',
-//             'Gender' => '',
-//             'Address' => '',
-//             'phone' => '',
-//             'image' => '',
-//         ]);
+        return  Information::create([
+            'Department' => null(),
+            'DOFB'  => null(),
+            'Gender' => null(),
+            'Address' => null(),
+            'phone' => null(),
+            'image' => null(),
+        ]);
     }
 }

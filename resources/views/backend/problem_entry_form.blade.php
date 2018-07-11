@@ -1,14 +1,5 @@
-
 @extends("backend.layout.app")
 @section("content_area")
-
-       @if($errors->any())
-        	@foreach($errors->all() as $error)  
-        	
-        	<font color="red">		{{$error}} </font>
-                
-      		@endforeach 		
-  	   @endif
        
 
             <u><h2 align="center">Problem Entry Form</h2></u><br><br><br>

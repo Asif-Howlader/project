@@ -67,7 +67,7 @@
         <div class="page-content">
             <div class="row">
                 <div class="col-md-3">
-                    @include("backend.layout.side_menu")
+                    @include("fontend.layout.side_menu")
                 </div>
                 <div class="col-md-8">
                     <div class="content-box-large">

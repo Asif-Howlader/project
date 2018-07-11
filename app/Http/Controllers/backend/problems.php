@@ -5,28 +5,37 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\problem;
+use Illuminate\Validation\Validator;
+use App\information;
+use App\User;
 use Symfony\Component\Console\Helper\Table;
 class problems extends Controller
 {
-    //
+    //Authentaction
+    
+    public function __construct()
+    {
+        $this->middleware('Admin');
+    }
+        
     public function problem_insert(Request $request) {
-//         $all_value  =   $request->all();
-//         $insert_array   =   [
-//             'name'             => $all_value['name'],
-//             'discription'      => $all_value['discription']
+        $all_value  =   $request->all();
+        $insert_array   =   [
+            'name'             => $all_value['name'],
+            'discription'      => $all_value['discription']
             
-//         ];
-//         problem::insert($insert_array);
-            $this->validate($request, [
-                "name"=>"required",
-                "discription"=>"required",
-//                 "_token" =>"required"
-            ],[
-                "name"=>"Sir Name Fild Must be NOT empty",
-                "discription"=>"Sir You Must fill up Discription of Following Problem"
-            ]);
-            problem::insert($request->all());
-                    return redirect('/home');
+        ];
+        problem::insert($insert_array);
+//             $this->validate($request, [
+//                 "name"=>"required",
+//                 "discription"=>"required",
+// //                 "_token" =>"required"
+//             ],[
+//                 "name"=>"Sir Name Fild Must be NOT empty",
+//                 "discription"=>"Sir You Must fill up Discription of Following Problem"
+//             ]);
+//             problem::insert($request->all());
+                    return redirect('problems_list');
                     
          }
     
@@ -45,8 +54,10 @@ class problems extends Controller
         $service->name  =   $all_value['name'];
         $service->discription  =   $all_value['discription'];
         $service->save();
-        return redirect("\problems_list");
+        return redirect("problems_list");
     }
+    
+
     
     public function problems_list() {
         $problems_list   =   problem::all();
@@ -82,6 +93,7 @@ class problems extends Controller
         echo json_encode($feedback);
     }
 
+    
  
         
     public function time_settings(){
@@ -92,5 +104,15 @@ class problems extends Controller
     }
     public function home(){
         return view("backend.home");
+    }
+
+    
+    public function problem_list(){
+        $problems_list   =   problem::all();
+        return view("fontend\problems_list", compact("problems_list"));
+    }
+    public function problem(Request $request){
+       $all_info = problem::find($request->id);
+      return view("fontend\problem",compact("all_info"));
     }
 }
