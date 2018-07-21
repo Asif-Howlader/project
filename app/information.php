@@ -11,4 +11,7 @@ class information extends Model
         return $this->belongsTo(User::class);
     }
     
+    protected $table='information';
+   // protected $fillable = ['Department','DOFB','Gender','Address','phone','Image_Name','Image_Path','user_id'];
+    
 }

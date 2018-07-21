@@ -44,7 +44,9 @@ class LoginController extends Controller
     {
         return Auth::guard();
     }
-    
+//     protected function   redirectTo(){
+//         return '/home';
+//     }
 //     public function Login(Request $request){
 //         dd($request->all());
 //         $user = Auth::where('email',$request->email)->first();

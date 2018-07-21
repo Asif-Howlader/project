@@ -3,7 +3,7 @@
        
 
             <u><h2 align="center">Problem Entry Form</h2></u><br><br><br>
-            <form class="form-horizontal" action="{{ url('problem_insert') }}" method="post">
+            <form class="form-horizontal" action="{{ url('/admin/problem_insert') }}" method="post">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="name">Name</label>

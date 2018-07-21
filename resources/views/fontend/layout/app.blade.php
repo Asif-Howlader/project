@@ -45,7 +45,7 @@
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}} <b class="caret"></b></a>
                                         <ul class="dropdown-menu animated fadeInUp">
                                         
-                                            <li><a href="{{ url('/profile/'.Auth::user()->id) }}" class="glyphicon glyphicon-eye-open">Profile</a> </li>
+                                            <li><a href="{{ url('/user/profile/'.Auth::user()->id) }}" class="glyphicon glyphicon-eye-open">Profile</a> </li>
                                             <li><a href="{{ route('logout') }} " onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                                      {{ __('Logout') }}

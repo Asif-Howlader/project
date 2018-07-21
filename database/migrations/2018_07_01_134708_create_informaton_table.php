@@ -21,9 +21,8 @@ class CreateInformatonTable extends Migration
             $table->string('Gender')->default('null');
             $table->string('Address')->default('null');
             $table->string('phone')->default('null');
-            $table->string('image')->default('null');
+            $table->string('Image')->default('1.png');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('Users');
             $table->timestamps();
         });
     }

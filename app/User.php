@@ -44,4 +44,8 @@ class User extends Authenticatable
 //         }
 //         return false;
 //     }
+
+    public function submition(){
+        return $this->hasMany(submition::class);
+    }
 }

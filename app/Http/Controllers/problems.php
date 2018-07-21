@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\backend;
+namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -8,15 +8,18 @@ use App\problem;
 use Illuminate\Validation\Validator;
 use App\information;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Console\Helper\Table;
+
+
 class problems extends Controller
 {
     //Authentaction
     
-    public function __construct()
-    {
-        $this->middleware('Admin');
-    }
+//     public function __construct()
+//     {
+//         $this->middleware('Admin');
+//     }
         
     public function problem_insert(Request $request) {
         $all_value  =   $request->all();
@@ -26,16 +29,7 @@ class problems extends Controller
             
         ];
         problem::insert($insert_array);
-//             $this->validate($request, [
-//                 "name"=>"required",
-//                 "discription"=>"required",
-// //                 "_token" =>"required"
-//             ],[
-//                 "name"=>"Sir Name Fild Must be NOT empty",
-//                 "discription"=>"Sir You Must fill up Discription of Following Problem"
-//             ]);
-//             problem::insert($request->all());
-                    return redirect('problems_list');
+                    return redirect('/admin/problems_list');
                     
          }
     
@@ -54,24 +48,18 @@ class problems extends Controller
         $service->name  =   $all_value['name'];
         $service->discription  =   $all_value['discription'];
         $service->save();
-        return redirect("problems_list");
+        return redirect("/admin/problems_list");
     }
     
 
     
     public function problems_list() {
-        $problems_list   =   problem::all();
-        return view("backend\problems_list", compact("problems_list"));
+        $problems_list   =   problem::paginate(4);
+        return view("backend\problem_list", compact("problems_list"));
      
     }
     
     public function delete(Request $request){
-//         $delete_id=problem::findOrFail($request->id);
-//         $delete_id->delete();  
-//         $all    =   $request->all();
-//         $problems_list   =   problem::all();
-//         return redirect("\problems_list");        
-
         $all    =   $request->all();        
         if(isset($request->field_name) && !empty($request->field_name)){
             $delete_field   =   $request->field_name;
@@ -92,27 +80,27 @@ class problems extends Controller
        }
         echo json_encode($feedback);
     }
-
-    
+  
  
         
     public function time_settings(){
         return view("backend.time_settings");
     }
+    
+    
+    
     public function winer_list(){
+        
         return view("backend.winer_list");
     }
-    public function home(){
-        return view("backend.home");
+    
+    
+    public function index(){
+        $user =Auth::user();
+        $user_id=$user->id;
+        $profile=information::find($user_id);
+        return view("backend.home",compact("profile"));
     }
 
-    
-    public function problem_list(){
-        $problems_list   =   problem::all();
-        return view("fontend\problems_list", compact("problems_list"));
-    }
-    public function problem(Request $request){
-       $all_info = problem::find($request->id);
-      return view("fontend\problem",compact("all_info"));
-    }
+
 }

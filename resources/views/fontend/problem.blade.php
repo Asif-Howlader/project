@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse" id="myNavbar"  >
       <ul class="nav navbar-nav">
         <li class="active"><a href="">Problem</a></li>
-        <li><a href="{{URL('/user/all_submition/'.$all_info->id)}}">Submission</a></li>
+        <li><a href="{{url('/user/all_submition/'.$all_info->id)}}">Submission</a></li>
       </ul>
     </div>
   </div>

@@ -25,6 +25,7 @@
             </tr> 
             @endforeach
         </tbody>
-    </table>
+        
+    </table>{{$problems_list->links()}}
 </div>
 @endsection

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     /**
@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin');
+        $this->middleware('auth');
     }
 
     /**
@@ -21,8 +21,25 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+//     public function index()
+//     {
+//         return view('home');
+//     }
+
     public function index()
     {
-        return view('home');
+        // user retrive:
+        
+        $user=Auth::user();
+        if ($user->user_type == 'admin'){
+            return redirect('/admin/home');
+        }elseif ($user->user_type == 'user'){
+            if (Auth::check())
+                return redirect('/user/home');
+        }
+//         return $next($request); 
+//         $user   =   Auth::user();
+// //         return view('backend.home', compact('user'));
+//         return redirect('/home');
     }
 }

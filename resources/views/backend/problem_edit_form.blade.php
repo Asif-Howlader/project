@@ -2,7 +2,7 @@
 @section("content_area")
         
             <u>  <h2 align="center">Problem Edit Form</h2></u><br><br><br>
-            <form class="form-horizontal" action="{{ url('/problem_update') }}" method="post">
+            <form class="form-horizontal" action="{{ url('/admin/problem_update') }}" method="post">
                 {{ csrf_field() }}
                 <div class="form-group"> 
                 

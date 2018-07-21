@@ -1,27 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\backend;
+namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\information;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use App\problem;
 use App\User;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Debug\Tests\Fixtures\ToStringThrower;
+use Image;
+use Illuminate\Http\UploadedFile;
 
 class Profile extends Controller
 {
     //
     
     public function profile(Request $request){
-        
+
         $profile=information::find($request->id);
         if ($profile==!null){
             $user=User::find($request->id);
+            //$all_in=information::find($post_id)->comment;
+            //dd($profile);
             return view("backend.profile",compact("profile","user"));
         }
         
@@ -30,6 +26,23 @@ class Profile extends Controller
         ];
         information::insert($request);
         return redirect()->route('/profile/',[$profile]);
+        
+    }
+    
+    public function user_profile(Request $request){
+        
+        $profile=information::find($request->id);
+        if ($profile==!null){
+            $user=User::find($request->id);
+            return view("fontend.profile",compact("profile","user"));
+        }
+        
+        $request= [
+            "user_id"=>$request->id,
+        ];
+        information::insert($request);
+        return redirect()->route('/profile/',[$profile]);
+        
     }
     
     public function profile_edit(Request $request){
@@ -49,10 +62,18 @@ class Profile extends Controller
 // //         return Storage::putFile('public',$all_value['file']);
 //         return $all_value['file']->image->extension();
         //Image::make($all_value['file'])->resize(100,100)->save($location);
-        $service->Address  =   $all_value['Address'];
+        $service->Address     =   $all_value['Address'];
         $service->Department  =   $all_value['Department'];
-        $service->Gender  =   $all_value['Gender'];
-        $service->DOFB  =   $all_value['DOFB'];
+        $service->Gender      =   $all_value['Gender'];
+        
+        $myfile               = $all_value['pic']; 
+        $file                 = $request->file('pic');
+        $files =$file->getClientOriginalName();
+        //dd($files);
+        $service->Image= $files;
+        $destination ='images';
+        // = base_path() . '/public/uploads';
+        $file->move($destination,$files);
         $service->save();
         return redirect("home");
     }

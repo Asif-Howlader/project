@@ -1,7 +1,7 @@
 @extends("backend.layout.app")
 @section("content_area")
 
-      <div class="row">
+      <div class="row" align="center">
       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
 
        <br>
@@ -17,7 +17,7 @@
             <div class="panel-body">
               
                 <div class="col-md-3 col-lg-3 " align="center"> 
-                <img src="{{ url('$profile->image') }}" class="img-rounded" alt="Cinque Terre" width="50" height="50"> 
+                <img src="/project/public/images/{{$profile->Image}}" class="img-rounded" alt="Cinque Terre" width="100" height="100"> 
                 </div>
                
                <div class="row">
@@ -63,7 +63,7 @@
             </div>
                  <div class="panel-footer">
 
-<a  href="{{ url('/profile_edit/'.$user->id)}}"  type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+<a  href="{{ url('/admin/profile_edit/'.$user->id)}}"  type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
 
                     </div>
                                                     
