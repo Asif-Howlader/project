@@ -12,7 +12,7 @@
   </div>
 </nav>
 <div>
-<div> <h1 align="center"><u> Problem Discription ({{$all_info->name}})</u></h1></div>
+<div> <h1 align="center"><u> Problem Solution ({{$all_info->name}})</u></h1></div>
 <br><br>
 <div> <p> {{$all_info->discription}} <p></div>
 <br><br>

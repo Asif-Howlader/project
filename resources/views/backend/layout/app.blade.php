@@ -8,6 +8,7 @@
         <!-- styles -->
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
         <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
+         <link href="{{ asset('css/w3.css') }}" rel="stylesheet">
 
     </head>
     <body>
@@ -81,14 +82,14 @@
             <div class="container">
 
                 <div class="copy text-center">
-                    Copyright 2018  <a href='http://www.bdmidi.com/'> (www.bdmidi.com) </a>
+                    Copyright 2018  <a href="{{url('https://daffodilvarsity.edu.bd/')}}">  (https://daffodilvarsity.edu.bd/)</a>
                 </div>
 
             </div>
         </footer>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="{{ asset('bootstrap/js/jquery.js') }}"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
@@ -122,6 +123,25 @@
                     
                   });
               }
+
+            //for slider
+            var slideIndex = 1;
+            showDivs(slideIndex);
+
+            function plusDivs(n) {
+              showDivs(slideIndex += n);
+            }
+
+            function showDivs(n) {
+              var i;
+              var x = document.getElementsByClassName("mySlides");
+              if (n > x.length) {slideIndex = 1}    
+              if (n < 1) {slideIndex = x.length}
+              for (i = 0; i < x.length; i++) {
+                 x[i].style.display = "none";  
+              }
+              x[slideIndex-1].style.display = "block";  
+            }
         </script>
     </body>
 </html>

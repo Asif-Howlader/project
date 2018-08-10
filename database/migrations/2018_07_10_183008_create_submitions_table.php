@@ -17,7 +17,7 @@ class CreateSubmitionsTable extends Migration
             $table->increments('id');           
             $table->integer('user_id');
             $table->integer('problem_id');
-            $table->time('submited_time')->date("Y-m-d h:i:s a", time());
+            $table->dateTime('submited_time');
             $table->text('submited_code')->nullable();
             $table->integer('state')->default(0);
             $table->integer('t_val')->default(0);

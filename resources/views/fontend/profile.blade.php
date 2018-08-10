@@ -1,4 +1,4 @@
-@extends("backend.layout.app")
+@extends("fontend.layout.app")
 @section("content_area")
 
       <div class="row" align="center">

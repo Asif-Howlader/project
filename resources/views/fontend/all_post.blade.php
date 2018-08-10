@@ -1,15 +1,18 @@
 @extends("fontend.layout.app")
 @section("content_area")
-<div> <h1 align="center"><u> Problem Discription </u></h1></div>
-<br><br>
-<div> <p>  <p></div>
-<br><br>
+
+<div class="border-top-0" >
+<nav class="navbar navbar-inverse"  >
+   <h2 align="center" style="color: #f4f6f9"> Problem Solution</h2>
+</nav>
+</div><!-- /row -->
+
+<br>
 <div class="panel-body "> 
 
 		<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">		
 		  <thead>
             <tr>
-                <th>Pop_ID</th>
                 <th>user_id</th>
                 <th>Submited_code</th>                
                 <th>submited_time</th>
@@ -18,7 +21,6 @@
         <tbody>
         @foreach($all_info as $service)
         	  <tr>
-               <td>{{ $service->problem_id }}</td>
                <td>{{ $service->user_id }} </td>
                 <td>{{ $service->submited_code }} </td> 
                 <td>{{ $service->submited_time }} </td>

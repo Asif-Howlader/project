@@ -1,7 +1,12 @@
 @extends("backend.layout.app")
 @section("content_area")
 
-    <div class="panel-title" align="center" ><u> <h1>Student's List </h1></u></div> <br><br>
+<div class="border-top-0" >
+<nav class="navbar navbar-inverse"  >
+   <h2 align="center" style="color: #f4f6f9"> Student's List</h2>
+</nav>
+</div><!-- /row -->
+
 <div class="panel-body ">
     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
         <thead>

@@ -22,7 +22,7 @@ class AdminMiddelware
         
         $user=Auth::user();
         if ($user->user_type == 'admin'){
-            return redirect('/admin/home');
+            return redirect('/admin/teacher_home');
         }elseif ($user->user_type == 'user'){
             if (Auth::check())
             return redirect('/user/home');

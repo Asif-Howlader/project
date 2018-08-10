@@ -8,6 +8,7 @@
         <!-- styles -->
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
         <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/w3.css') }}" rel="stylesheet">
 
     </head>
     <body>
@@ -81,7 +82,7 @@
             <div class="container">
 
                 <div class="copy text-center">
-                    Copyright 2018  <a href='http://www.bdmidi.com/'> (www.bdmidi.com) </a>
+                    Copyright 2018  <a href="{{url('https://daffodilvarsity.edu.bd/')}}"> (https://daffodilvarsity.edu.bd/) </a>
                 </div>
 
             </div>
@@ -94,34 +95,26 @@
         <script src="{{ asset('js/custom.js') }}"></script>
         <script src="{{ asset('js/sweetalert.js') }}"></script>
         <script type="text/javascript">
-            function deleteConfirmation(delete_id, table_name, field_name=""){
-                swal({
-                    title: "You want to delete this?",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonClass: "btn-danger",
-                    confirmButtonText: "Confirm",
-                    closeOnConfirm: false
-                  },
-                  function(){
-                    
-                    $.ajax({
-                        url         :   "{{ url('\delete_data')}}",
-                        type        :   "get",
-                        dataType    :   "json",
-                        data        :   "delete_id="+delete_id+"&table_name="+table_name+"&field_name="+field_name,
-                        success     : function (response){
-                            if(response.status=="success"){
-                            	//window.location.reload(); //// This is not jQuery but simple plain ol' JS
-                            	location.reload();
-                                swal.close();
-                                $("#row_"+delete_id).remove();
-                            }
-                        }
-                    });
-                    
-                  });
-              }
+
+
+            //for slider
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
         </script>
     </body>
 </html>

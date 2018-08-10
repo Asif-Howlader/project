@@ -19,7 +19,7 @@
                 <img src="/project/public/images/{{$profile->Image}}" class="img-rounded" alt="Cinque Terre" width="100" height="100"> 
                 <br><br>                      
                                     
-                <input type="file" name="pic" >
+                <input type="file" name="pic" required>
                 
                 </div>
                 <div class="row" >

@@ -9,7 +9,7 @@
    
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">{{ $all_info->user_id }}</h3><br>
+              <h3 class="panel-title">{{ $user->name }}</h3><br>
             </div>
             <div class="panel-body">
               
@@ -44,7 +44,7 @@
                       
                       <tr>
                         <td>Email Address:</td>
-                        <td>{{ $all_info->email }} </td>
+                        <td>{{ $user->email }} </td>
                       </tr>
                       
                       <tr>

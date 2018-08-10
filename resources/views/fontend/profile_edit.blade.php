@@ -1,10 +1,10 @@
-@extends("backend.layout.app")
+@extends("fontend.layout.app")
 @section("content_area")
 
       <div class="row" >
       
-      <form class="form-horizontal" action="{{ url('/user/profile_update') }}" method="post">
-      {{ csrf_field() }}   
+      <form enctype="multipart/form-data" class="form-horizontal" action="{{ url('/user/profile_update') }}" method="post">
+      {!! csrf_field() !!}  
               <div class="form-group">
               <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
               </div>
@@ -15,11 +15,12 @@
             </div>
             <div class="panel-body" >
               
-                <div class="col-md-3 col-lg-3 " align="center"> <img src="{{ $profile->image }}" class="img-rounded" alt="Cinque Terre" width="100" height="100"> 
-                <br><br>
-                      
+                <div class="col-md-3 col-lg-3 " align="center"> 
+                <img src="/project/public/images/{{$profile->Image}}" class="img-rounded" alt="Cinque Terre" width="100" height="100"> 
+                <br><br>                      
                                     
-                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="f1">
+                <input type="file" name="pic" required>
+                
                 </div>
                 <div class="row" >
                 <div class=" col-md-6 col-lg-9 " > 

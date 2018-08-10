@@ -12,12 +12,12 @@
    
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">User Id:</h3><br>
+              <h3 class="panel-title">{{ $user->name }}</h3><br>
             </div>
             <div class="panel-body">
               
                 <div class="col-md-3 col-lg-3 " align="center"> 
-                <img src="" class="img-rounded" alt="Cinque Terre" width="100" height="100"> 
+                <img src="/project/public/images/{{$all_info->Image}}" class="img-rounded" alt="Cinque Terre" width="100" height="100"> 
                 </div>
                
                <div class="row">
@@ -47,7 +47,7 @@
                       
                       <tr>
                         <td>Email Address:</td>
-                        <td> </td>
+                        <td>{{ $user->email }} </td>
                       </tr>
                       
                       <tr>

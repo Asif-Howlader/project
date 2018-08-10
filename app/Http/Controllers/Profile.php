@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\information;
 use App\User;
-use Image;
 use Illuminate\Http\UploadedFile;
 
 class Profile extends Controller
@@ -51,44 +50,49 @@ class Profile extends Controller
         return view("backend.profile_edit",compact("profile","user"));
     }
     
+    public function user_profile_edit(Request $request){
+        $profile = information::find($request->id);
+        $user=User::find($request->id);
+        return view("fontend.profile_edit",compact("profile","user"));
+    }
+    
+    
     public function profile_update(Request $request){
         
         $all_value      =   $request->all();
         $service        =   information::find($all_value['profile_edit_id']);
         $service->phone  =   $all_value['phone'];
-//         $img=base64_encode(file_get_contents($_FILES['f1']["size"] < 500000)) ;
-//         $service->image = $img;
-//         $location =  $service->image->photo->store('images');
-// //         return Storage::putFile('public',$all_value['file']);
-//         return $all_value['file']->image->extension();
-        //Image::make($all_value['file'])->resize(100,100)->save($location);
         $service->Address     =   $all_value['Address'];
         $service->Department  =   $all_value['Department'];
         $service->Gender      =   $all_value['Gender'];
-        
         $myfile               = $all_value['pic']; 
         $file                 = $request->file('pic');
         $files =$file->getClientOriginalName();
-        //dd($files);
         $service->Image= $files;
         $destination ='images';
-        // = base_path() . '/public/uploads';
         $file->move($destination,$files);
         $service->save();
-        return redirect("home");
+        return redirect("/admin/teacher_home");
+        //return back();
     }
-//     public function information(){
-//         $request= [            
-//             "Department"=>null(),
-//             "DOFB"=>null(),
-//             "Gender"=>null(),
-//             "Address"=>null(),
-//             "phone"=>null(),
-//             "image"=>null()
-//         ];
-// //         information::insert($request->all());
-
-//         information::save($request);
-//     }
+    
+    
+    public function user_profile_update(Request $request){
+        
+        $all_value      =   $request->all();
+        $service        =   information::find($all_value['profile_edit_id']);
+        $service->phone  =   $all_value['phone'];
+        $service->Address     =   $all_value['Address'];
+        $service->Department  =   $all_value['Department'];
+        $service->Gender      =   $all_value['Gender'];
+        $myfile               = $all_value['pic'];
+        $file                 = $request->file('pic');
+        $files =$file->getClientOriginalName();
+        $service->Image= $files;
+        $destination ='images';
+        $file->move($destination,$files);
+        $service->save();
+        return redirect("/user/home");
+    }
     
 }

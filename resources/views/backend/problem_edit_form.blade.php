@@ -1,7 +1,11 @@
 @extends("backend.layout.app")
 @section("content_area")
         
-            <u>  <h2 align="center">Problem Edit Form</h2></u><br><br><br>
+        <div class="border-top-0" >
+<nav class="navbar navbar-inverse"  >
+   <h2 align="center" style="color: #f4f6f9">Problem Edit Form </h2>
+</nav>
+</div><!-- /row -->
             <form class="form-horizontal" action="{{ url('/admin/problem_update') }}" method="post">
                 {{ csrf_field() }}
                 <div class="form-group"> 
