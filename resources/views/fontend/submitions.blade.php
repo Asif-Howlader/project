@@ -10,27 +10,28 @@
 </div><!-- /row -->
 
 @foreach($all_info as $service)
+@foreach($user_info as $info)
+@if($info->id == $service->user_id)
 <div>
 <div class="col-sm-1"><br>
 <div class="thumbnail">
-<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+<img class="img-responsive user-photo" src="/project/public/images/{{$info->Image}}">
 </div><!-- /thumbnail -->
 </div><!-- /col-sm-1 -->
 
-
 <div class="panel panel-default">
 <div class="panel-heading">
-<strong>user id:{{ $service->user_id }}</strong> <span class="text-muted">code :{{ $service->submited_code }}</span>
+<strong>User Name:{{ $info->name }}</strong> <span class="text-muted">code :{{ $service->submited_code }}</span>
 
-<br><p align="right"> DATE:TIME{{ $service->submited_time }} </p>
+<br><p align="right"> DATE:TIME{{ $service->created_at }} </p>
 </div>
-
+@endif
+@endforeach
 
 @foreach($inn as $all)
 @if($all->submition_id == $service->id)
 <div class="panel-heading" align="right">
-
-<strong> user name:{{ $all->user_name }} </strong> <p > <span class="text-muted" >code :{{ $all->comment }}</span></p>
+<strong> User Name:{{ $all->user_name }} </strong> <p > <span class="text-muted" >code :{{ $all->comment }}</span></p>
 </div>
 @endif
 @endforeach

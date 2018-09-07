@@ -35,7 +35,7 @@
                 {{ csrf_field() }}
                 			  <input type="hidden" name="post_id" value="{{ $service->id }}" >
                               <input type="radio" name="t_val" value="1" > OK <a>  |  </a>
-                              <input type="radio" name="t_val" value="0" > NOT <a>  |  </a>                        
+                              <input type="radio" name="t_val" value="0" > NOT <a>  </a>                        
                               <input type="submit" style="color:#f44242" class="btn btn-default" value="Update" name='Submit'>
                 </form></td>
            

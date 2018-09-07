@@ -12,6 +12,7 @@
 
     </head>
     <body>
+    @can('isAdmin')
         <div class="header">
             <div class="container">
                 <div class="row">
@@ -40,7 +41,7 @@
                    
                         <div class="navbar navbar-inverse" role="banner">                         
                             <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
-                            <img src="{{url('./images/diu1.jpg')}}" class="img-rounded" alt="Cinque Terre" style="margin:1px" width="40" height="48">
+                            <img src="/project/public/images/{{Auth::user()->Image}}" class="img-rounded" alt="Cinque Terre" style="margin:1px" width="40" height="48">
                                 <ul class="nav navbar-nav">                                
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}} <b class="caret"></b></a>
@@ -82,11 +83,21 @@
             <div class="container">
 
                 <div class="copy text-center">
-                    Copyright 2018  <a href="{{url('https://daffodilvarsity.edu.bd/')}}">  (https://daffodilvarsity.edu.bd/)</a>
+                    An education aid system project BSc 2018  <a href="{{url('https://youtu.be/rN7IdoywwJo')}}">  (YouTube URL)</a>
                 </div>
 
             </div>
-        </footer>
+
+		@else
+		<!-- The Current User Can't Update The Post -->
+		<div class="flex-center position-ref full-height">
+			<div class="content">
+				<div class="title">Sorry, the page you are looking for could not be
+					found.</div>
+			</div>
+		</div>
+		@endcan
+	</footer>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="{{ asset('bootstrap/js/jquery.js') }}"></script>

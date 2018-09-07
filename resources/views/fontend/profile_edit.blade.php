@@ -11,7 +11,7 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
          <div class="panel panel-info" >
             <div class="panel-heading">
-              <h3 class="panel-title">{{ $user->name }}</h3><br>
+              <h3 class="panel-title">{{ $profile->name }}</h3><br>
             </div>
             <div class="panel-body" >
               
@@ -45,7 +45,7 @@
                       </tr>
                       <tr>
                         <td>Email Address:</td>
-                        <td>{{ $user->email }}</td>
+                        <td>{{ $profile->email }}</td>
                       </tr>
                       <tr>
                         <td>Phone Number:</td>
@@ -59,7 +59,7 @@
               </div>
             </div>
                  <div class="panel-footer">
-                 <input type="hidden" name="profile_edit_id" value="{{$user->id}}" >
+                 <input type="hidden" name="profile_edit_id" value="{{$profile->id}}" >
                  <input type="submit" class="btn btn-success " value="Update" name='Submit'><i></i></input>
                 </form>  </div>
                  </div>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,35 +13,32 @@
 
     </head>
     <body>
+    @can('isUser')
         <div class="header">
             <div class="container">
                 <div class="row">
                     <div class="col-md-5">
                         <!-- Logo -->
-                        <div class="logo">
-<!--                             <img src="../images/diu1.jpg" class="img-rounded" alt="Cinque Terre" width="60" height="50">  -->
-                        </div>
                     </div>
-                    <div class="col-md-4" align="right">
+                    <div class="col-md-3" align="right">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="input-group form">
                                     <input type="text" class="form-control" placeholder="Search...">
                                     <span class="input-group-btn">
                                         <button class="btn btn-primary" type="button">Search</button>                                        
-                                    </span>
-                                     
+                                    </span>                                     
                                 </div>
                             </div>
                         </div>
                         
                     </div>
                     
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                    
                         <div class="navbar navbar-inverse" role="banner">                         
                             <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
-                            <img src="{{url('./images/diu1.jpg')}}" class="img-rounded" alt="Cinque Terre" style="margin:1px" width="40" height="48">
+                            <img src="/project/public/images/{{Auth::user()->Image}}" class="img-rounded" alt="Cinque Terre" style="margin:1px" width="40" height="48">
                                 <ul class="nav navbar-nav">                                
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}} <b class="caret"></b></a>
@@ -68,28 +66,41 @@
         <div class="page-content">
             <div class="row">
                 <div class="col-md-3">
+                
                     @include("fontend.layout.side_menu")
                 </div>
                 <div class="col-md-8">
                     <div class="content-box-large">
                         @yield('content_area')
+                        
                     </div>
                 </div>
             </div>
         </div> <br>
 
-        <footer>
-            <div class="container">
+	<footer>
+		<div class="container">
 
-                <div class="copy text-center">
-                    Copyright 2018  <a href="{{url('https://daffodilvarsity.edu.bd/')}}"> (https://daffodilvarsity.edu.bd/) </a>
-                </div>
+			<div class="copy text-center">
+				An education aid system project BSc 2018 <a
+					href="{{url('https://youtu.be/rN7IdoywwJo')}}">
+					(YouTube URL) </a>
+			</div>
 
-            </div>
-        </footer>
+		</div>
+		@else
+		<!-- The Current User Can't Update The Post -->
+		<div class="flex-center position-ref full-height">
+			<div class="content">
+				<div class="title">Sorry, the page you are looking for could not be
+					found.</div>
+			</div>
+		</div>
+		@endcan
+	</footer>
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://code.jquery.com/jquery.js"></script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="{{ asset('js/jquery.js') }}"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
@@ -115,6 +126,7 @@ function showDivs(n) {
   }
   x[slideIndex-1].style.display = "block";  
 }
-        </script>
+        </script>        
+
     </body>
 </html>

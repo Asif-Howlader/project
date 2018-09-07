@@ -6,7 +6,11 @@
     <div class="collapse navbar-collapse" id="myNavbar"  >
       <ul class="nav navbar-nav">
         <li class="active"><a href="">Problem</a></li>
+        @foreach($user_id as $id)
+        @if($id->user_id == $c_id )
         <li><a href="{{url('/user/all_submition/'.$all_info->id)}}">Submission</a></li>
+        @endif
+        @endforeach
       </ul>
     </div>
   </div>

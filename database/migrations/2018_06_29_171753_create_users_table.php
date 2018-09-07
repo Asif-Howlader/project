@@ -18,7 +18,13 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email',191)->unique();
             $table->string('password');
-            $table->string('user_type',5)->default('user');
+            $table->string('user_type',5)->default('user');            
+            $table->string('Department')->default('null');
+            $table->date('DOFB')->default('12-12-12');
+            $table->string('Gender')->default('null');
+            $table->string('Address')->default('null');
+            $table->string('phone')->default('null');
+            $table->string('Image')->default('1.png');
             $table->rememberToken();
             $table->timestamps();
         });

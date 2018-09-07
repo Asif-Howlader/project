@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Comment;
 use App\problem;
 use App\submition;
-use App\information;
-use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class User_controller extends Controller
 {
     //
     
     public function index(){
+        if (!\Illuminate\Support\Facades\Gate::allows('isUser')){
+            abort(404,"Sorry You can't access this page");
+        }       
         return view("fontend.home");
     }    
     
@@ -21,42 +24,58 @@ class User_controller extends Controller
         $problems_list   =   problem::paginate(4);
         return view("fontend.problems_list", compact("problems_list"));
     }
+    
+    
     public function problem(Request $request){
         $all_info = problem::find($request->id);
-        return view("fontend.problem",compact("all_info"));
-    }
-    
-    public function class_students(){
-        $all_info=DB::table('users')->where('user_type','user')->get();
-        return view("backend.class_students",compact("all_info"));
-    }
-    public function student_profile(Request $request){
-        $id= $request->id;
-        $total_submition=submition::where('user_id',$id)->count();
-       // dd($total_submition);
-        $user=User::where('id',$id)->first();
-        //dd($user);
-        $total_result=submition::where('user_id',$id)->where('state','1')->count();
-       // dd($total_ok);
-        $total_painding=$total_submition-$total_result;
+        $c_id=Auth::user()->id;
+        $ok       = submition::where('problem_id',$request->id)->where('user_id',$c_id)->get();
+        $user_id=(object)$ok;  
+        //dd($ok);
         
-        $total_ok=submition::where('user_id',$id)->where('t_val','1')->count();
-        $total_not_ok=submition::where('user_id',$id)->where('t_val','0')->count();
-        //dd($total_not_ok);
-        $all_info=information::find($id);
-        if (!empty($all_info)){
-            return view("backend.student_profile",compact("all_info","total_submition","total_result","total_painding","total_ok","total_not_ok","user"));
-        }
-        return view("backend.student_profile_without",compact("total_submition","total_result","total_painding","total_ok","total_not_ok","user"));
+        //dd($c_id);
+        return view("fontend.problem",compact("all_info","user_id","c_id"));
     }
-    
+
     
     public function all_classes(){
         
     }
     
-    public function admin_all_classes(){
+    public function all_posts(){
+        
+        $all_info=submition::paginate(4);
+        return view("/fontend/all_post", compact("all_info"));
+    }    
+    
+    public function comment(Request $request){
+        $tab=$request->all();
+        $re=[
+            "user_id" => $tab['user_id'],
+            "problem_id"=>$tab['problem_id'],
+            "user_name"=> $tab['user_name'],
+            "comment"=> $tab['comment'],
+            "submition_id" => $tab['id'],
+            
+        ];
+        Comment::create($re);
+        return back();
+    }
+    
+    public function all_submition(Request $request){
+        $post=$request->id;
+        $all_info = DB::table('submitions')->where('problem_id',$post)->get();
+        //dd($all_info);
+        $info_all = array();
+        foreach ($all_info as $info){
+            $post_id= $info->id;
+            $all_in=submition::find($post_id)->comment;
+            foreach ($all_in as $in){
+                $info_all[]=$in;
+            }
+        }
+        $inn=(object)$info_all;
+        return view(".fontend.submitions", compact("all_info","inn"));
         
     }
-
 }

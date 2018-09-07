@@ -1,3 +1,4 @@
+
 <div class="sidebar content-box" style="display: block;">
     <ul class="nav">
         <!-- Main menu -->

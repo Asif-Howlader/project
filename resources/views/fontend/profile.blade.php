@@ -12,7 +12,7 @@
    
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">{{ $user->name }}</h3><br>
+              <h3 class="panel-title">{{ $profile->name }}</h3><br>
             </div>
             <div class="panel-body">
               
@@ -47,7 +47,7 @@
                       
                       <tr>
                         <td>Email Address:</td>
-                        <td>{{ $user->email }} </td>
+                        <td>{{ $profile->email }} </td>
                       </tr>
                       
                       <tr>
@@ -63,7 +63,7 @@
             </div>
                  <div class="panel-footer">
 
-<a  href="{{ url('/user/profile_edit/'.$user->id)}}"  type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+<a  href="{{ url('/user/profile_edit/'.$profile->id)}}"  type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
 
                     </div>
                                                     
