@@ -34,8 +34,6 @@ class Admin_Submition extends Controller
     }
     
     public function all_submiton_list(){
-        
-       // $all_info = DB::table('submitions')->get();
         $user_info = DB::table('users')
         ->join('submitions','submitions.user_id','=','users.id')
         ->select('users.name','users.Image','submitions.id','submitions.submited_code',
@@ -45,29 +43,12 @@ class Admin_Submition extends Controller
         $user_in = array();
         foreach ($user_info as $info){
             $post_id= $info->id;
-//             $user_id=$info->user_id;
-            
-            
-            //for user information
-//             $user_info=DB::table('users')->where('id',$user_id)->get();
-//             foreach ($user_info as $uid){
-//                 $user_in[]=$uid;
-//             }
-            //$user_in[]=$user_info;
-            
-            //for submition and user information 
-          
-            
-            //for comments
             $all_in=submition::find($post_id)->comment;
             foreach ($all_in as $in){
                 $info_all[]=$in;
             }
         }
         $inn=(object)$info_all;
-        //dd($inn);        
-       // $user_info=(object)$user_in;  
-       // dd($user_info);
         return view(".backend.all_submition_list", compact("all_info","inn","user_info"));
         
     }

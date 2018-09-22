@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use App\problem;
-use Illuminate\Validation\Validator;
 use App\User;
 use App\submition;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\Console\Helper\Table;
+use Illuminate\Support\Facades\DB;
 
 class Admin_Controller extends Controller
 {
@@ -97,4 +93,19 @@ class Admin_Controller extends Controller
         return view("backend.student_profile_without",compact("total_submition","total_result","total_painding","total_ok","total_not_ok","user"));
     }
     
+    public function search(Request $request){
+        $search = $request->search;
+        // dd($search);
+        if ($search != "") {
+            $all_info = User::where('name', 'LIKE', '%' . $search . '%')->orWhere('email', 'LIKE', '%' . $search . '%')->get();
+            if (count($all_info) > 0) {
+                return view('backend.search', compact("all_info"));
+                // ->withQuery($search);
+            } else
+                $info="No user's found";
+                return view('backend.search_notfound', compact("info"));
+        }
+
+    }
 }
+

@@ -1,6 +1,8 @@
 <?php
 
 use App\Admin;
+use App\User;
+use Illuminate\Support\Facades\Input;
 
 Route::get('/', function () {
     return redirect('login');
@@ -38,7 +40,9 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
     Route::post("/admin_comment","Admin_Submition@admin_comment");
     
     Route::get("/class_students","Admin_Controller@class_students");
-    Route::get("/student_profile/{id}","Admin_Controller@student_profile");    
+    Route::get("/student_profile/{id}","Admin_Controller@student_profile");
+    Route::get("/search","Admin_Controller@search");
+     
    // Route::get('/all_classes','User_controller@admin_all_classes');
     
   // });

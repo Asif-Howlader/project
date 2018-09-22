@@ -17,9 +17,11 @@
             <div class="panel-body">
               
                 <div class="col-md-3 col-lg-3 " align="center"> 
+                <strong>
                 <img src="/project/public/images/{{$profile->Image}}" class="img-rounded" alt="Cinque Terre" width="100" height="100"> 
+                </strong>
                 </div>
-               
+               <br>
                <div class="row">
                 <div class=" col-md-9 col-lg-9 "> 
                 

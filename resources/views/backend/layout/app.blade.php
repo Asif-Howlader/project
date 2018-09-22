@@ -3,6 +3,7 @@
     <head>
         <title>PROJECT AP</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="_token" content="{{ csrf_token() }}">
         <!-- Bootstrap -->
         <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
         <!-- styles -->
@@ -22,19 +23,21 @@
 <!--                             <img src="../images/diu1.jpg" class="img-rounded" alt="Cinque Terre" width="60" height="50">  -->
                         </div>
                     </div>
-                    <div class="col-md-4" align="right">
+                    <div class="col-md-4" align="right">                    
                         <div class="row">
                             <div class="col-lg-12">
+                            <form action="{{ url('/admin/search') }}" method="get" >
+                    			{{ csrf_field() }}
                                 <div class="input-group form">
-                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <input type="text" class="form-control" id="search" name="search" placeholder="Search...">                                    
                                     <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button">Search</button>                                        
-                                    </span>
-                                     
+                                        <button class="btn btn-primary" type="submit">Search</button>   
+                                        <span class="glyphicon glyphicon-search"></span>                                     
+                                    </span>                                     
                                 </div>
+                                </form>
                             </div>
-                        </div>
-                        
+                        </div>                        
                     </div>
                     
                     <div class="col-md-3">
@@ -105,6 +108,7 @@
         <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
         <script src="{{ asset('js/sweetalert.js') }}"></script>
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script type="text/javascript">
             function deleteConfirmation(delete_id, table_name, field_name=""){
                 swal({
@@ -154,5 +158,37 @@
               x[slideIndex-1].style.display = "block";  
             }
         </script>
+        <script type="text/javascript">
+ 
+$('#search').on('keyup',function(){
+ 
+$value=$(this).val();
+ 
+$.ajax({
+ 
+type : 'get',
+ 
+url : '{{URL::to('search')}}',
+ 
+data:{'search':$value},
+ 
+success:function(data){
+ 
+$('tbody').html(data);
+ 
+}
+ 
+});
+ 
+ 
+ 
+})
+ 
+</script>
+<script type="text/javascript">
+ 
+$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+ 
+</script>
     </body>
 </html>

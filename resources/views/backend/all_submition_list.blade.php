@@ -24,7 +24,7 @@
 @foreach($inn as $all)
 @if($all->submition_id == $service->id)
 <div class="panel-heading" align="right">
-<strong>Name:{{ $all->user_name }} </strong> <p > <span class="text-muted" >code :{{ $all->comment }}</span></p>
+<strong>Name:{{ $all->user_name }} </strong> <p > <span class="text-muted" >Comment :{{ $all->comment }}</span></p>
 </div>
 @endif
 @endforeach
